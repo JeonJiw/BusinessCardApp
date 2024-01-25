@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Assignment1_BusinessCardApp</string>
+    <string name="phone">825-288-2443</string>
+    <string name="socialId">/@ji_wooona</string>
+    <string name="email">j.jeon339@mybvc.ca</string>
 </resources>
