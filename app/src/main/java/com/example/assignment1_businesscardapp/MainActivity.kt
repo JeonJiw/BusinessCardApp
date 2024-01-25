@@ -5,17 +5,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.assignment1_businesscardapp.ui.theme.Assignment1_BusinessCardAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Business Card App")
+                    Greeting()
                 }
             }
         }
@@ -36,21 +44,31 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun Logo(modifier: Modifier = Modifier) {
-    val image = painterResource(id = R.drawable.android_logo)
-    Image(
-        painter = image,
-        contentDescription = null,
-    )
-    Text(
-        text = "android",
-        modifier = modifier
-    )
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+    ) {
+        val image = painterResource(id = R.drawable.android_logo)
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier
+                .size(100.dp)
+                .background(color = Color.Blue)
+        )
+    }
 }
+
 
 
 @Composable
 fun MainContainer(name: String, position: String, modifier: Modifier = Modifier){
-    Column {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+    ) {
         Logo()
         Text(
             text = name,
@@ -66,12 +84,11 @@ fun MainContainer(name: String, position: String, modifier: Modifier = Modifier)
 
 @Composable
 fun InfoContainer(modifier: Modifier = Modifier){
-    Column {
-//        DetailInfo(imageName = "phone", text = "825-288-2443", modifier)
-//        DetailInfo(imageName = "socialId", text = "@ji_wooona", modifier)
-//        DetailInfo(imageName = "email", text = "j.jwon339@mybvc.ca", modifier)
+    Column(
+        modifier = Modifier.background(color = Color.Red)
+    ) {
         DetailInfo(imageName = "phone", text = "825-288-2443", modifier)
-        DetailInfo(imageName = "socialId", text = "@ji_wooona", modifier)
+        DetailInfo(imageName = "social", text = "@ji_wooona", modifier)
         DetailInfo(imageName = "email", text = "j.jwon339@mybvc.ca", modifier)
     }
 
@@ -80,26 +97,34 @@ fun InfoContainer(modifier: Modifier = Modifier){
 @Composable
 fun DetailInfo(imageName: String, text:String, modifier: Modifier){
 
-//        var image = painterResource(id = R.drawable.android_logo)
-//        Image(
-//            painter = image,
-//            contentDescription = null,
-//        )
-    Row{
-        Text(
-            text = imageName,
+    Row(
 
+    ){
+        val image = when (imageName) {
+            "email" -> painterResource(id = R.drawable.email)
+            "phone" -> painterResource(id = R.drawable.phone)
+            else -> painterResource(id = R.drawable.social)
+        }
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(24.dp).padding(5.dp)
         )
-        Text(
+            Text(
             text = text,
-            modifier = Modifier
+            modifier = Modifier.padding(start = 10.dp, bottom = 10.dp)
         )
     }
 
 }
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column {
+fun Greeting(modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    )
+    {
         MainContainer(name = "Jiwon Jeon", position = "Full Stack Developer")
         InfoContainer()
     }
@@ -111,6 +136,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     Assignment1_BusinessCardAppTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
