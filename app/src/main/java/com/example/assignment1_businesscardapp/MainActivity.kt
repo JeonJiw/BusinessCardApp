@@ -7,8 +7,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -85,20 +87,18 @@ fun MainContainer(name: String, position: String, modifier: Modifier = Modifier)
 @Composable
 fun InfoContainer(modifier: Modifier = Modifier){
     Column(
-        modifier = Modifier.background(color = Color.Red)
+        modifier = Modifier.padding(bottom = 50.dp)
     ) {
-        DetailInfo(imageName = "phone", text = "825-288-2443", modifier)
-        DetailInfo(imageName = "social", text = "@ji_wooona", modifier)
-        DetailInfo(imageName = "email", text = "j.jwon339@mybvc.ca", modifier)
+        DetailInfo(imageName = "phone", text = "825-288-2443")
+        DetailInfo(imageName = "social", text = "@ji_wooona")
+        DetailInfo(imageName = "email", text = "j.jwon339@mybvc.ca")
     }
 
 }
 
 @Composable
-fun DetailInfo(imageName: String, text:String, modifier: Modifier){
-
+fun DetailInfo(imageName: String, text:String){
     Row(
-
     ){
         val image = when (imageName) {
             "email" -> painterResource(id = R.drawable.email)
@@ -121,11 +121,13 @@ fun DetailInfo(imageName: String, text:String, modifier: Modifier){
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    )
-    {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.weight(1f))
         MainContainer(name = "Jiwon Jeon", position = "Full Stack Developer")
+        Spacer(modifier = Modifier.weight(1f))
         InfoContainer()
     }
 
