@@ -57,11 +57,10 @@ fun Logo(modifier: Modifier = Modifier) {
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp)
-                .background(color = Color.Blue)
+                .background(color = Color(0xFF00539C))
         )
     }
 }
-
 
 
 @Composable
@@ -74,7 +73,7 @@ fun MainContainer(name: String, position: String, modifier: Modifier = Modifier)
         Logo()
         Text(
             text = name,
-            modifier = modifier
+            modifier = modifier.padding(top = 10.dp)
         )
         Text(
             text = position,
@@ -121,7 +120,7 @@ fun DetailInfo(imageName: String, text:String){
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier,
+        modifier = modifier.background(color = Color(0xFFFCF6F5)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
